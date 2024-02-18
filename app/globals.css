@@ -8,14 +8,10 @@ body,
   height: 100%;
 }
 
-/* Hide default scrollbar for Firefox */
-body {
-  scrollbar-width: none; /* Firefox */
-}
-
 /* Custom scrollbar style for Firefox */
 body {
   scrollbar-color: transparent transparent; /* Firefox */
+  scrollbar-width: 1px;
 }
 
 @layer base {
@@ -100,7 +96,7 @@ body {
 }
 
 .root-container {
-  @apply mt-16 flex-1 overflow-auto py-8 lg:mt-0 lg:max-h-screen lg:py-10;
+  @apply mt-16 flex-1 overflow-auto py-2 lg:mt-0 lg:max-h-screen lg:py-10;
 }
 
 /* ========================================== TAILWIND STYLES */
