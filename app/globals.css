@@ -8,12 +8,6 @@ body,
   height: 100%;
 }
 
-/* Custom scrollbar style for Firefox */
-body {
-  scrollbar-color: transparent transparent; /* Firefox */
-  scrollbar-width: 1px;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -386,6 +380,7 @@ body {
   font-weight: 600;
   color: #384262;
 }
-body::-webkit-scrollbar {
-  width: 0;
+.no-scrollbar {
+  scrollbar-width: none; 
+  scrollbar-color: transparent transparent; /* Firefox */
 }

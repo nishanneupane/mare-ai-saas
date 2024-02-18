@@ -13,7 +13,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="sidebar h-full overflow-y-auto bg-white w-22 items-center justify-center">
+    <aside className="sidebar h-full overflow-y-scroll no-scrollbar bg-white w-22 items-center justify-center">
       <div className="flex size-full flex-col gap-4">
         <Link href="/" className="sidebar-logo px-5">
           <Image src="/assets/images/logo-icon.svg" alt="logo" width={28} height={28} />
