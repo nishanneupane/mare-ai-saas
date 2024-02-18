@@ -8,8 +8,17 @@ body,
   height: 100%;
 }
 
+/* Hide default scrollbar for Firefox */
+body {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Custom scrollbar style for Firefox */
+body {
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+
 @layer base {
-  
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -380,4 +389,7 @@ body,
   font-size: 16px;
   font-weight: 600;
   color: #384262;
+}
+body::-webkit-scrollbar {
+  width: 0;
 }
