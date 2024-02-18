@@ -128,7 +128,7 @@ export const transformationTypes = {
     icon: "image.svg",
   },
   removeBackground: {
-    type: "Background Remover",
+    type: "removeBackground",
     title: "Background Remove",
     subTitle: "Utilize AI to Effortlessly Remove Image Backgrounds",
     config: { removeBackground: true },
@@ -143,7 +143,7 @@ export const transformationTypes = {
   },
   remove: {
     type: "remove",
-    title: "Object Remover",
+    title: "Object Remove",
     subTitle: "Detect and Remove Objects from Images Automatically",
     config: {
       remove: { prompt: "", removeShadow: true, multiple: true },
