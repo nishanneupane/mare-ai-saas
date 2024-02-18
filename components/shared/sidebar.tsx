@@ -6,16 +6,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '../ui/button'
+import { cn } from '@/lib/utils'
 
 const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="sidebar h-full overflow-y-auto">
+    <aside className="sidebar h-full overflow-y-auto bg-white">
       <div className="flex size-full flex-col gap-4">
-        <Link href="/" className="sidebar-logo">
+        <Link href="/" className="sidebar-logo px-5">
           <Image src="/assets/images/logo-icon.svg" alt="logo" width={28} height={28} />
-          <h1 className='font-bold text-sky-500 text-2xl'>MARE</h1>
+          <h1 className='font-bold text-sky-500'>MARE</h1>
         </Link>
 
         <nav className="sidebar-nav">
@@ -25,7 +26,7 @@ const Sidebar = () => {
                 const isActive = link.route === pathname
 
                 return (
-                  <li key={link.route} className={`sidebar-nav_element group ${isActive ? 'bg-purple-gradient text-white' : 'text-gray-700'
+                  <li key={link.route} className={`sidebar-nav_element group ${isActive ? 'bg-purple-gradient text-white relative' : 'text-gray-700'
                     }`}>
                     <Link className="sidebar-link" href={link.route}>
                       <Image
@@ -37,6 +38,7 @@ const Sidebar = () => {
                       />
                       {link.label}
                     </Link>
+                    <div className={cn('', isActive && 'absolute right-0 top-0 w-1 h-full bg-sky-600')} />
                   </li>
                 )
               })}

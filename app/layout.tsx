@@ -34,7 +34,7 @@ export default function RootLayout({
           <ThemeProvider
           attribute="class"
           storageKey="mare"
-          defaultTheme="system"
+          defaultTheme="light"
           >
             {children}
           </ThemeProvider>
