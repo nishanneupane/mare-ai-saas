@@ -27,7 +27,7 @@ import MediaUploader from "./media-uploader"
 import TransformedImage from "./transformed-image"
 import { InsufficientCreditsModal } from "./insufficient-credits-modal"
 
-const formSchema = z.object({
+export const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
   aspectRatio: z.string().optional(),
   color: z.string().optional(),
