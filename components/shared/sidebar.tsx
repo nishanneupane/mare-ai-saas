@@ -43,7 +43,7 @@ const Sidebar = () => {
                               alt={link.label}
                               width={20}
                               height={20}
-                              className={cn("transition-all duration-200", isActive && 'scale-110')}
+                              className={cn("transition-all duration-200", isActive && 'scale-110 bg-white')}
                             />
                           </div>
                         </Hint>
