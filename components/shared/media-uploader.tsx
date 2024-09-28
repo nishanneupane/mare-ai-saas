@@ -5,6 +5,8 @@ import { dataUrl, getImageSize } from "@/lib/utils";
 import { CldImage, CldUploadWidget } from "next-cloudinary"
 import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 type MediaUploaderProps = {
   onValueChange: (value: string) => void;
@@ -37,17 +39,17 @@ const MediaUploader = ({
     toast({
       title: 'Image uploaded successfully',
       description: '1 credit was deducted from your account',
-      duration: 5000,
-      className: 'success-toast' 
+      duration: 3000,
+      className: 'bg-green-500 text-white' 
     })
   }
 
   const onUploadErrorHandler = () => {
     toast({
-      title: 'Something went wrong while uploading',
+      title: 'Upload failed',
       description: 'Please try again',
-      duration: 5000,
-      className: 'error-toast' 
+      duration: 3000,
+      className: 'bg-red-500 text-white' 
     })
   }
 
@@ -62,39 +64,52 @@ const MediaUploader = ({
       onError={onUploadErrorHandler}
     >
       {({ open }) => (
-        <div className="flex flex-col gap-4">
-          <h3 className="h3-bold text-dark-600">
-            Original
-          </h3>
+        <Card className="w-full max-w-md mx-auto">
+          <CardContent className="p-6">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              Original Image
+            </h3>
 
-          {publicId ? (
-            <>
-              <div className="cursor-pointer overflow-hidden rounded-[10px]">
-                <CldImage 
-                  width={getImageSize(type, image, "width")}
-                  height={getImageSize(type, image, "height")}
-                  src={publicId}
-                  alt="image"
-                  sizes={"(max-width: 767px) 100vw, 50vw"}
-                  placeholder={dataUrl as PlaceholderValue}
-                  className="media-uploader_cldImage"
-                />
-              </div>
-            </>
-          ): (
-            <div className="media-uploader_cta" onClick={() => open()}>
-              <div className="media-uploader_cta-image">
-                <Image 
-                  src="/assets/icons/add.svg"
-                  alt="Add Image"
-                  width={24}
-                  height={24}
-                />
-              </div>
-                <p className="p-14-medium">Click here to upload image</p>
+            <div className="transition-opacity duration-300 ease-in-out">
+              {publicId ? (
+                <div className="overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105">
+                  <CldImage 
+                    width={getImageSize(type, image, "width")}
+                    height={getImageSize(type, image, "height")}
+                    src={publicId}
+                    alt="Uploaded image"
+                    sizes={"(max-width: 767px) 100vw, 50vw"}
+                    placeholder={dataUrl as PlaceholderValue}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              ) : (
+                <div
+                  className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 transition-colors duration-300 ease-in-out"
+                  onClick={() => open()}
+                >
+                  <Image 
+                    src="/assets/icons/add.svg"
+                    alt="Add Image"
+                    width={48}
+                    height={48}
+                    className="mb-4"
+                  />
+                  <p className="text-lg text-gray-600 text-center">Click or drag to upload an image</p>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+
+            {publicId && (
+              <Button
+                onClick={() => open()}
+                className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white transition-colors duration-300 ease-in-out"
+              >
+                Replace Image
+              </Button>
+            )}
+          </CardContent>
+        </Card>
       )}
     </CldUploadWidget>
   )

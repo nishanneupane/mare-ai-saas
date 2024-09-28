@@ -11,67 +11,73 @@ import { Button } from '../ui/button'
 const MobileNav = () => {
     const pathname = usePathname()
     return (
-        <header className='header'>
-
-            <Link href="/" className="sidebar-logo px-5">
-                <Image src="/assets/images/logo-icon.svg" alt="logo" width={28} height={28} />
-                <h1 className='font-bold text-sky-500 text-lg'>MARE</h1>
+        <header className='flex justify-between items-center px-4 py-3 bg-white shadow-sm'>
+            <Link href="/" className="flex items-center space-x-2">
+                <Image src="/assets/images/logo-icon.svg" alt="logo" width={32} height={32} />
+                <h1 className='font-bold text-sky-600 text-xl'>MARE</h1>
             </Link>
-            <nav className="flex gap-2">
+            <nav>
                 <SignedIn>
-                    <UserButton afterSignOutUrl='/' />
-                    <Sheet>
-                        <SheetTrigger>
-                            <Image
-                                src={"/assets/icons/menu.svg"}
-                                alt='menu'
-                                width={32}
-                                height={32}
-                                className='cursor-pointer'
-                            />
-                        </SheetTrigger>
-                        <SheetContent className='sheet-content sm:w-64'>
-                            <>
-                                <div className="sidebar-logo px-5 cursor-pointer">
-                                    <Image src="/assets/images/logo-icon.svg" alt="logo" width={28} height={28} />
-                                    <h1 className='font-bold text-sky-500 text-lg'>MARE</h1>
+                    <div className="flex items-center space-x-4">
+                        <UserButton afterSignOutUrl='/' />
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button variant="ghost" size="icon">
+                                    <Image
+                                        src={"/assets/icons/menu.svg"}
+                                        alt='menu'
+                                        width={24}
+                                        height={24}
+                                    />
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="right" className='p-0'>
+                                <div className="flex flex-col h-full">
+                                    <div className="p-4 border-b">
+                                        <Link href="/" className="flex items-center space-x-2">
+                                            <Image src="/assets/images/logo-icon.svg" alt="logo" width={32} height={32} />
+                                            <h1 className='font-bold text-sky-600 text-xl'>MARE</h1>
+                                        </Link>
+                                    </div>
+                                    <nav className="flex-grow py-4">
+                                        <ul className="space-y-2">
+                                            {navLinks.map((link) => {
+                                                const isActive = link.route === pathname
+                                                return (
+                                                    <li key={link.route}>
+                                                        <Link 
+                                                            href={link.route}
+                                                            className={`flex items-center space-x-3 px-4 py-2 text-sm font-medium transition-colors
+                                                                ${isActive 
+                                                                    ? 'bg-sky-100 text-sky-700' 
+                                                                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                                                                }`}
+                                                        >
+                                                            <Image
+                                                                src={link.icon}
+                                                                alt={link.label}
+                                                                width={20}
+                                                                height={20}
+                                                            />
+                                                            <span>{link.label}</span>
+                                                        </Link>
+                                                    </li>
+                                                )
+                                            })}
+                                        </ul>
+                                    </nav>
                                 </div>
-
-                                <ul className="header-nav_elements">
-                                    {navLinks.map((link) => {
-                                        const isActive = link.route === pathname
-
-                                        return (
-                                            <li key={link.route}
-                                                className={`${isActive && 'gradient-text'
-                                                    } p-18 flex whitespace-nowrap text-dark-700`}>
-                                                <Link className="sidebar-link cursor-pointer" href={link.route}>
-                                                    <Image
-                                                        src={link.icon}
-                                                        alt="logo"
-                                                        width={24}
-                                                        height={24}
-                                                    />
-                                                    {link.label}
-                                                </Link>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-
-
-                            </>
-                        </SheetContent>
-                    </Sheet>
+                            </SheetContent>
+                        </Sheet>
+                    </div>
                 </SignedIn>
 
                 <SignedOut>
-                    <Button asChild className="button bg-purple-gradient bg-cover">
+                    <Button asChild className="bg-sky-600 hover:bg-sky-700 text-white">
                         <Link href="/sign-in">Login</Link>
                     </Button>
                 </SignedOut>
             </nav>
-
         </header>
     )
 }
