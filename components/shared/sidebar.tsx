@@ -29,7 +29,7 @@ const Sidebar = () => {
 
                   return (
                     <li key={link.route}>
-                      <Link 
+                      <Link
                         href={link.route}
                         className={cn(
                           "flex items-center space-x-3 rounded-lg px-3 py-2 transition-all duration-200",
@@ -43,7 +43,8 @@ const Sidebar = () => {
                               alt={link.label}
                               width={20}
                               height={20}
-                              className={cn("transition-all duration-200", isActive && 'scale-110 bg-white')}
+                              className={cn("transition-all duration-200 fill-white text-white", isActive && 'scale-110')}
+                              style={{ filter: 'brightness(0) invert(1)' }}
                             />
                           </div>
                         </Hint>
